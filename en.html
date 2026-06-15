@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wolegequ - Side Hustle Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0f;
+      --card-bg: rgba(255,255,255,0.04);
+      --card-border: rgba(255,255,255,0.08);
+      --accent: #6c5ce7;
+      --accent2: #a29bfe;
+      --text: #e8e8f0;
+      --text-dim: #8888a0;
+      --glow: rgba(108,92,231,0.35);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── Lang Switch ── */
+    .lang-switch {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 100;
+      display: flex;
+      gap: .4rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: .3rem;
+      backdrop-filter: blur(12px);
+    }
+    .lang-switch a {
+      padding: .35rem .8rem;
+      border-radius: 6px;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .lang-switch a.active {
+      background: var(--accent);
+      color: #fff;
+    }
+    .lang-switch a:hover:not(.active) {
+      color: var(--text);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, var(--glow), transparent 70%);
+      top: 10%; left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      animation: pulse 6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: .4; transform: translateX(-50%) scale(1); }
+      50% { opacity: .7; transform: translateX(-50%) scale(1.15); }
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 900;
+      letter-spacing: .04em;
+      background: linear-gradient(135deg, #fff 30%, var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      animation: fadeUp .8s ease-out both;
+    }
+
+    .hero-sub {
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: 400;
+      color: var(--text-dim);
+      margin-top: .6rem;
+      letter-spacing: .3em;
+      animation: fadeUp .8s .2s ease-out both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      color: var(--text-dim);
+      font-size: .85rem;
+      animation: fadeUp .8s .5s ease-out both;
+    }
+
+    .scroll-hint .arrow {
+      width: 24px; height: 24px;
+      border-right: 2px solid var(--accent2);
+      border-bottom: 2px solid var(--accent2);
+      transform: rotate(45deg);
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); opacity: 1; }
+      50% { transform: rotate(45deg) translateY(10px); opacity: .4; }
+    }
+
+    /* ── Section shared ── */
+    section.tools {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 2rem 8rem;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all .7s ease-out;
+    }
+    .section-title.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-desc {
+      text-align: center;
+      color: var(--text-dim);
+      margin-bottom: 3.5rem;
+      font-size: 1.05rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all .7s .15s ease-out;
+    }
+    .section-desc.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Cards ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2rem 1.6rem;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(50px) scale(.96);
+      transition: all .6s ease-out;
+    }
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(108,92,231,.15), transparent 60%);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .card:hover::before { opacity: 1; }
+
+    .card:hover {
+      border-color: rgba(108,92,231,.4);
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(108,92,231,.18);
+    }
+
+    .card-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 4px 20px var(--glow);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+
+    .card-desc {
+      color: var(--text-dim);
+      font-size: .92rem;
+      line-height: 1.6;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      margin-top: 1.2rem;
+      color: var(--accent2);
+      font-size: .9rem;
+      font-weight: 600;
+    }
+    .card-link::after {
+      content: '→';
+      transition: transform .2s;
+    }
+    .card:hover .card-link::after {
+      transform: translateX(4px);
+    }
+
+    .card.disabled {
+      cursor: default;
+      opacity: 0;
+    }
+    .card.disabled.visible {
+      opacity: .55;
+    }
+    .card.disabled:hover {
+      transform: translateY(0) scale(1);
+      border-color: var(--card-border);
+      box-shadow: none;
+    }
+    .card.disabled:hover::before { opacity: 0; }
+    .card.disabled .card-link { color: var(--text-dim); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--text-dim);
+      font-size: .82rem;
+      border-top: 1px solid var(--card-border);
+    }
+
+    /* ── Particles ── */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .particles span {
+      position: absolute;
+      width: 3px; height: 3px;
+      background: var(--accent2);
+      border-radius: 50%;
+      opacity: 0;
+      animation: drift linear infinite;
+    }
+
+    @keyframes drift {
+      0% { opacity: 0; transform: translateY(0); }
+      10% { opacity: .6; }
+      90% { opacity: .6; }
+      100% { opacity: 0; transform: translateY(-100vh); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+
+<nav class="lang-switch">
+  <a href="index.html">中文</a>
+  <a href="en.html" class="active">EN</a>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <h1 class="hero-title">Wolegequ</h1>
+  <p class="hero-sub">SIDE HUSTLE GUIDE</p>
+  <div class="scroll-hint">
+    <span>Scroll Down</span>
+    <div class="arrow"></div>
+  </div>
+</header>
+
+<!-- Tools -->
+<section class="tools">
+  <h2 class="section-title">My Tools</h2>
+  <p class="section-desc">Side projects I've built — hope they help you too</p>
+  <div class="cards">
+
+    <a href="https://qihao.wolegequ.top" class="card" target="_blank" rel="noopener">
+      <div class="card-icon">🚀</div>
+      <div class="card-title">Account Launch Guide</div>
+      <div class="card-desc">Step-by-step guide to grow your account from scratch — skip the trial and error</div>
+      <span class="card-link">Try it out</span>
+    </a>
+
+    <a href="https://download.wolegequ.top" class="card" target="_blank" rel="noopener">
+      <div class="card-icon">📦</div>
+      <div class="card-title">Asset Downloader</div>
+      <div class="card-desc">One-click download for all kinds of creative assets — fast and hassle-free</div>
+      <span class="card-link">Try it out</span>
+    </a>
+
+    <a href="https://skills.wolegequ.top" class="card" target="_blank" rel="noopener">
+      <div class="card-icon">⚡</div>
+      <div class="card-title">AI Skills</div>
+      <div class="card-desc">A collection of AI skills that make AI actually useful</div>
+      <span class="card-link">Try it out</span>
+    </a>
+
+    <a href="https://hot.wolegequ.top" class="card" target="_blank" rel="noopener">
+      <div class="card-icon">🔥</div>
+      <div class="card-title">Trending Pool</div>
+      <div class="card-desc">Real-time trending topics aggregator — catch every wave of traffic</div>
+      <span class="card-link">Try it out</span>
+    </a>
+
+    <div class="card disabled">
+      <div class="card-icon" style="background: linear-gradient(135deg, #555, #777); box-shadow: none;">✨</div>
+      <div class="card-title">To Be Continued</div>
+      <div class="card-desc">More tools on the way — stay tuned…</div>
+      <span class="card-link">Coming Soon</span>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Wolegequ &middot; Side Hustle Guide
+</footer>
+
+<script>
+  // ── Scroll reveal ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.section-title, .section-desc, .card').forEach(el => observer.observe(el));
+
+  // ── Particles ──
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const s = document.createElement('span');
+    s.style.left = Math.random() * 100 + '%';
+    s.style.animationDuration = 8 + Math.random() * 12 + 's';
+    s.style.animationDelay = Math.random() * 10 + 's';
+    s.style.width = s.style.height = 2 + Math.random() * 3 + 'px';
+    container.appendChild(s);
+  }
+</script>
+
+</body>
+</html>
