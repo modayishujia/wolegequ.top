@@ -17,15 +17,13 @@
 
   var current = location.pathname.split('/').pop() || 'index.html';
   var saved = sessionStorage.getItem(STORAGE_KEY);
-  if (saved && saved !== current) {
-    location.replace(saved);
-    return;
-  }
+  if (saved) return;
 
   var browserLang = (navigator.language || navigator.userLanguage || '').split('-')[0].toLowerCase();
   var target = LANG_MAP[browserLang] || LANG_MAP[navigator.language] || DEFAULT;
 
   if (target !== current) {
+    sessionStorage.setItem(STORAGE_KEY, current);
     location.replace(target);
   }
 })();
