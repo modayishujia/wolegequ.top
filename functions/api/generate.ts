@@ -42,7 +42,7 @@ export const onRequestGet: PagesFunction<{ AI: Ai }> = async (context) => {
   const topicDesc = TOPICS[topic] || TOPICS['general'];
 
   try {
-    const response = await context.env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
+    const response = await context.env.AI.run('@cf/meta/llama-3.2-3b-instruct', {
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: `请为以下科技方向生成一个爆款内容 Prompt：\n\n方向：${topicDesc}\n\n请直接输出结果，不要有任何前缀说明。` },
