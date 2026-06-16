@@ -343,6 +343,134 @@
       90% { opacity: .6; }
       100% { opacity: 0; transform: translateY(-100vh); }
     }
+
+    .prompt-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 10;
+    }
+    .prompt-box {
+      background: linear-gradient(135deg, rgba(108,92,231,.12), rgba(162,155,254,.08));
+      border: 1px solid rgba(108,92,231,.3);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 40px rgba(108,92,231,.15);
+    }
+    .prompt-box h2 {
+      font-size: 1.6rem;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: .4rem;
+      background: linear-gradient(135deg, #fff 30%, var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .prompt-box .subtitle {
+      text-align: center;
+      color: var(--text-dim);
+      font-size: .92rem;
+      margin-bottom: 1.8rem;
+    }
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: .8rem;
+      margin-bottom: 1.5rem;
+    }
+    .topic-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: .9rem .6rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all .25s;
+      color: var(--text);
+      font-size: .88rem;
+      font-weight: 500;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .4rem;
+    }
+    .topic-btn .emoji { font-size: 1.4rem; }
+    .topic-btn:hover {
+      border-color: rgba(108,92,231,.5);
+      background: rgba(108,92,231,.1);
+      transform: translateY(-2px);
+    }
+    .topic-btn.active {
+      border-color: var(--accent);
+      background: rgba(108,92,231,.15);
+      box-shadow: 0 0 20px rgba(108,92,231,.2);
+    }
+    .generate-btn {
+      display: block;
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .3s;
+      box-shadow: 0 4px 20px var(--glow);
+    }
+    .generate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(108,92,231,.4);
+    }
+    .generate-btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .generate-btn .spinner {
+      display: inline-block;
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+      vertical-align: middle;
+      margin-right: .5rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .prompt-result {
+      margin-top: 1.5rem;
+      background: rgba(0,0,0,.3);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: none;
+      white-space: pre-wrap;
+      font-size: .92rem;
+      line-height: 1.8;
+      color: var(--text);
+      max-height: 500px;
+      overflow-y: auto;
+    }
+    .prompt-result.show { display: block; }
+    .prompt-result .copy-btn {
+      float: right;
+      background: var(--accent);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      padding: .4rem 1rem;
+      font-size: .82rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background .2s;
+    }
+    .prompt-result .copy-btn:hover { background: var(--accent2); }
   </style>
 </head>
 <body>
@@ -375,6 +503,30 @@
     <div class="arrow"></div>
   </div>
 </header>
+
+<!-- AI Prompt Generator -->
+<section class="prompt-section" style="padding-top: 80px;">
+  <div class="prompt-box">
+    <h2>⚡ Gerador de Prompts Virais de Tech</h2>
+    <p class="subtitle">Escolha um tópico, a IA gera ideias de conteúdo viral de tech para você</p>
+    <div class="topic-grid">
+      <div class="topic-btn active" data-topic="ai"><span class="emoji">🤖</span>IA</div>
+      <div class="topic-btn" data-topic="phone"><span class="emoji">📱</span>Gadgets</div>
+      <div class="topic-btn" data-topic="car"><span class="emoji">🚗</span>Carros Inteligentes</div>
+      <div class="topic-btn" data-topic="chip"><span class="emoji">🔧</span>Chips</div>
+      <div class="topic-btn" data-topic="space"><span class="emoji">🚀</span>Espaço</div>
+      <div class="topic-btn" data-topic="robot"><span class="emoji">🦾</span>Robótica</div>
+      <div class="topic-btn" data-topic="vr"><span class="emoji">🥽</span>XR / VR</div>
+      <div class="topic-btn" data-topic="quantum"><span class="emoji">⚛️</span>Quântica</div>
+      <div class="topic-btn" data-topic="general"><span class="emoji">🔥</span>Tópicos Quentes</div>
+    </div>
+    <button class="generate-btn" id="generateBtn" onclick="generatePrompt()">✨ Gerar Prompt Viral</button>
+    <div class="prompt-result" id="promptResult">
+      <button class="copy-btn" onclick="copyPrompt()">📋 Copiar</button>
+      <div id="promptText"></div>
+    </div>
+  </div>
+</section>
 
 <section class="tools">
   <h2 class="section-title">Minhas Ferramentas</h2>
@@ -442,7 +594,56 @@
 </footer>
 
 <script>
-  const observer = new IntersectionObserver((entries) => {
+  // ── Prompt Generator ──
+  let selectedTopic = 'ai';
+  const API_BASE = '';
+
+  document.querySelectorAll('.topic-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedTopic = btn.dataset.topic;
+    });
+  });
+
+  async function generatePrompt() {
+    const btn = document.getElementById('generateBtn');
+    const result = document.getElementById('promptResult');
+    const text = document.getElementById('promptText');
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Gerando…';
+    result.classList.remove('show');
+
+    try {
+      const res = await fetch(`${API_BASE}/api/generate?topic=${selectedTopic}`);
+      const data = await res.json();
+      if (data.success) {
+        text.textContent = data.prompt;
+        result.classList.add('show');
+      } else {
+        text.textContent = 'Erro: ' + (data.error || 'Erro desconhecido');
+        result.classList.add('show');
+      }
+    } catch (e) {
+      text.textContent = 'Erro de rede. Por favor, tente novamente mais tarde.';
+      result.classList.add('show');
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = '✨ Gerar Prompt Viral';
+  }
+
+  function copyPrompt() {
+    const text = document.getElementById('promptText').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.textContent = '✅ Copiado';
+      setTimeout(() => btn.textContent = '📋 Copiar', 2000);
+    });
+  }
+
+  // ── Scroll reveal ──
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
         setTimeout(() => e.target.classList.add('visible'), i * 100);
