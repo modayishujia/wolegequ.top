@@ -36,14 +36,6 @@
     .contact-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
     .contact-card p { font-size: .88rem; margin-bottom: 0; }
     .contact-card a { color: var(--accent2); text-decoration: none; }
-    form { margin-top: 2rem; }
-    .form-group { margin-bottom: 1.2rem; }
-    .form-group label { display: block; font-size: .9rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text); }
-    .form-group input, .form-group textarea { width: 100%; padding: 0.8rem 1rem; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; color: var(--text); font-family: inherit; font-size: .9rem; outline: none; transition: border-color .2s; }
-    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
-    .form-group textarea { min-height: 150px; resize: vertical; }
-    button[type="submit"] { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none; padding: 0.8rem 2.5rem; border-radius: 8px; font-size: .95rem; font-weight: 600; cursor: pointer; transition: opacity .2s; }
-    button[type="submit"]:hover { opacity: 0.85; }
     footer { text-align: center; padding: 3rem 2rem; color: var(--text-dim); font-size: .82rem; border-top: 1px solid var(--card-border); margin-top: 4rem; }
   </style>
 </head>
@@ -66,46 +58,23 @@
 
   <div class="contact-cards">
     <div class="contact-card">
-      <div class="icon">📧</div>
-      <h3>电子邮箱</h3>
-      <p><a href="mailto:contact@wolegequ.top">contact@wolegequ.top</a></p>
+      <div class="icon">📱</div>
+      <h3>微信公众号</h3>
+      <p>扫码关注「我了个去」公众号</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://mp.weixin.qq.com/s?__biz=&mid=&idx=&sn=&chksm=" alt="微信公众号二维码" style="margin-top: 1rem; border-radius: 8px; max-width: 180px;">
+      <p style="margin-top: .5rem; font-size: .8rem; opacity: .6;">微信搜索「我了个去」</p>
     </div>
     <div class="contact-card">
-      <div class="icon">💬</div>
-      <h3>社交媒体</h3>
-      <p>关注我们的社交账号获取最新动态</p>
-    </div>
-    <div class="contact-card">
-      <div class="icon">📝</div>
-      <h3>在线表单</h3>
-      <p>填写下方表单直接留言</p>
+      <div class="icon">🐦</div>
+      <h3>X (Twitter)</h3>
+      <p>关注我们的 X 账号获取最新动态</p>
+      <p style="margin-top: .5rem;"><a href="https://x.com/wolegequ" target="_blank" rel="noopener">@wolegequ</a></p>
     </div>
   </div>
-
-  <h2>在线留言</h2>
-  <form action="#" method="post">
-    <div class="form-group">
-      <label for="name">您的名称</label>
-      <input type="text" id="name" name="name" placeholder="请输入您的名称" required>
-    </div>
-    <div class="form-group">
-      <label for="email">电子邮箱</label>
-      <input type="email" id="email" name="email" placeholder="请输入您的邮箱" required>
-    </div>
-    <div class="form-group">
-      <label for="subject">主题</label>
-      <input type="text" id="subject" name="subject" placeholder="请输入主题">
-    </div>
-    <div class="form-group">
-      <label for="message">留言内容</label>
-      <textarea id="message" name="message" placeholder="请输入您的留言内容" required></textarea>
-    </div>
-    <button type="submit">发送留言</button>
-  </form>
 </div>
 
 <footer>
-  &copy; 2025 我了个去 &middot; <a href="privacy.html" style="color: var(--text-dim);">隐私政策</a> &middot; <a href="terms.html" style="color: var(--text-dim);">服务条款</a>
+  &copy; 2026 我了个去 &middot; <a href="privacy.html" style="color: var(--text-dim);">隐私政策</a> &middot; <a href="terms.html" style="color: var(--text-dim);">服务条款</a>
 </footer>
 </body>
 </html>
