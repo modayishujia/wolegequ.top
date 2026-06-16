@@ -23,6 +23,7 @@
   var target = LANG_MAP[browserLang] || LANG_MAP[navigator.language] || DEFAULT;
 
   if (target !== current) {
+    localStorage.setItem(STORAGE_KEY, target);
     sessionStorage.setItem(STORAGE_KEY, current);
     location.replace(target);
   }
