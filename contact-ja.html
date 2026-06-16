@@ -1,21 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>联系我们 - 我了个去 | 问题反馈与合作咨询</title>
-  <meta name="description" content="如有问题、建议或合作意向，欢迎通过邮件 contact@wolegequ.top 或社交媒体联系我们。">
-  <link rel="canonical" href="https://wolegequ.top/contact.html">
-  <link rel="canonical" href="https://wolegequ.top/contact.html">
-  <link rel="alternate" hreflang="zh" href="https://wolegequ.top/contact.html">
-  <link rel="alternate" hreflang="en" href="https://wolegequ.top/contact-en.html">
-  <link rel="alternate" hreflang="de" href="https://wolegequ.top/contact-de.html">
-  <link rel="alternate" hreflang="ja" href="https://wolegequ.top/contact-ja.html">
-  <link rel="alternate" hreflang="pt" href="https://wolegequ.top/contact-pt.html">
-  <link rel="alternate" hreflang="x-default" href="https://wolegequ.top/contact.html">
+  <title>お問い合わせ - Wolegequ | フィードバック・パートナーシップ</title>
+  <meta name="description" content="Wolegequへのお問い合わせは、メール contact@wolegequ.top またはソーシャルメディアから。ご質問、ご提案、パートナーシップのご相談をお待ちしています。">
+  <link rel="canonical" href="https://wolegequ.top/contact-ja.html">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6979809011861753" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
@@ -28,13 +21,17 @@
       --text-dim: #8888a0;
       --glow: rgba(108,92,231,0.35);
     }
-    body { font-family: 'Noto Sans SC', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+    body { font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,15,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--card-border); padding: 0 2rem; }
     nav .inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 56px; }
     nav .logo { font-weight: 900; font-size: 1.1rem; color: #fff; text-decoration: none; }
-    nav .links { display: flex; gap: 1.5rem; }
+    nav .links { display: flex; gap: 1.5rem; align-items: center; }
     nav .links a { color: var(--text-dim); text-decoration: none; font-size: .88rem; font-weight: 500; transition: color .2s; }
     nav .links a:hover, nav .links a.active { color: #fff; }
+    .lang-switch { display: flex; gap: .4rem; background: rgba(255,255,255,0.06); border: 1px solid var(--card-border); border-radius: 8px; padding: .3rem; }
+    .lang-switch a { padding: .35rem .8rem; border-radius: 6px; font-size: .8rem; font-weight: 600; color: var(--text-dim); text-decoration: none; transition: all .2s; }
+    .lang-switch a.active { background: var(--accent); color: #fff; }
+    .lang-switch a:hover:not(.active) { color: var(--text); }
     .page { max-width: 800px; margin: 0 auto; padding: 100px 2rem 4rem; }
     h1 { font-size: 2.2rem; font-weight: 900; margin-bottom: 2rem; background: linear-gradient(135deg, #fff 30%, var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     h2 { font-size: 1.3rem; font-weight: 700; margin: 2rem 0 0.8rem; color: var(--accent2); }
@@ -46,54 +43,52 @@
     .contact-card p { font-size: .88rem; margin-bottom: 0; }
     .contact-card a { color: var(--accent2); text-decoration: none; }
     footer { text-align: center; padding: 3rem 2rem; color: var(--text-dim); font-size: .82rem; border-top: 1px solid var(--card-border); margin-top: 4rem; }
+    footer a { color: var(--text-dim); text-decoration: none; }
+    footer a:hover { color: var(--accent2); }
   </style>
 </head>
 <body>
 <nav>
   <div class="inner">
-    <a href="index.html" class="logo">我了个去</a>
+    <a href="ja.html" class="logo">Wolegequ</a>
     <div class="links">
-      <a href="index.html">首页</a>
-      <a href="blog.html">文章</a>
-      <a href="about.html">关于我们</a>
-      <a href="contact.html" class="active">联系我们</a>
-      <span style="color: var(--card-border);">|</span>
-      <a href="contact-en.html" style="font-size:.78rem;">EN</a>
-      <a href="contact-de.html" style="font-size:.78rem;">DE</a>
-      <a href="contact-ja.html" style="font-size:.78rem;">JA</a>
-      <a href="contact-pt.html" style="font-size:.78rem;">PT</a>
+      <a href="ja.html">ホーム</a>
+      <a href="blog-ja.html">記事</a>
+      <a href="about-ja.html">ブログ</a>
+      <a href="contact-ja.html" class="active">お問い合わせ</a>
+      <div class="lang-switch">
+        <a href="contact.html">中文</a>
+        <a href="contact-en.html">EN</a>
+        <a href="contact-de.html">DE</a>
+        <a href="contact-ja.html" class="active">JA</a>
+        <a href="contact-pt.html">PT</a>
+      </div>
     </div>
   </div>
 </nav>
 
 <div class="page">
-  <h1>联系我们</h1>
-  <p>如果您有任何问题、建议、合作意向或内容反馈，欢迎通过以下方式联系我们。我们会尽快回复您。</p>
+  <h1>お問い合わせ</h1>
+  <p>ご質問、ご提案、パートナーシップのご相談、コンテンツへのフィードバックがございましたら、以下の方法でお気軽にご連絡ください。できるだけ早くご返信いたします。</p>
 
   <div class="contact-cards">
     <div class="contact-card">
       <div class="icon">📧</div>
-      <h3>电子邮件</h3>
-      <p>发送邮件给我们，我们会在24小时内回复</p>
+      <h3>メール</h3>
+      <p>メールを送っていただければ、24時間以内に返信いたします</p>
       <p style="margin-top: .5rem;"><a href="mailto:contact@wolegequ.top">contact@wolegequ.top</a></p>
     </div>
     <div class="contact-card">
       <div class="icon">🐦</div>
       <h3>X (Twitter)</h3>
-      <p>关注我们的 X 账号获取最新动态</p>
+      <p>最新情報を受け取るためにXアカウントをフォローしてください</p>
       <p style="margin-top: .5rem;"><a href="https://x.com/wolegequ" target="_blank" rel="noopener">@wolegequ</a></p>
-    </div>
-    <div class="contact-card">
-      <div class="icon">📱</div>
-      <h3>微信公众号</h3>
-      <p>微信搜索「我了个去」关注我们</p>
-      <p style="margin-top: .5rem; font-size: .88rem;">获取最新副业资讯和工具推荐</p>
     </div>
   </div>
 </div>
 
 <footer>
-  &copy; 2026 我了个去 &middot; <a href="privacy.html" style="color: var(--text-dim);">隐私政策</a> &middot; <a href="terms.html" style="color: var(--text-dim);">服务条款</a>
+  &copy; 2026 Wolegequ &middot; <a href="privacy-ja.html">プライバシーポリシー</a> &middot; <a href="terms-ja.html">利用規約</a>
 </footer>
 <script src="lang-detect.js"></script>
 </body>
