@@ -273,6 +273,49 @@
     .card.disabled:hover::before { opacity: 0; }
     .card.disabled .card-link { color: var(--text-dim); }
 
+    /* ── Top Nav ── */
+    .topnav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 0 2rem;
+    }
+    .topnav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .topnav-logo {
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: #fff;
+      text-decoration: none;
+    }
+    .topnav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .topnav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .topnav-links a:hover { color: #fff; }
+    .lang-switch {
+      position: static;
+      top: auto; right: auto;
+      z-index: auto;
+      background: rgba(255,255,255,0.06);
+    }
+
     /* ── Footer ── */
     footer {
       text-align: center;
@@ -281,6 +324,8 @@
       font-size: .82rem;
       border-top: 1px solid var(--card-border);
     }
+    footer a { color: var(--text-dim); text-decoration: none; }
+    footer a:hover { color: var(--accent2); }
 
     /* ── Particles ── */
     .particles {
@@ -310,9 +355,19 @@
 
 <div class="particles" id="particles"></div>
 
-<nav class="lang-switch">
-  <a href="index.html" class="active">中文</a>
-  <a href="en.html">EN</a>
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="topnav-logo">我了个去</a>
+    <div class="topnav-links">
+      <a href="blog.html">文章</a>
+      <a href="about.html">关于我们</a>
+      <a href="contact.html">联系我们</a>
+    </div>
+    <div class="lang-switch">
+      <a href="index.html" class="active">中文</a>
+      <a href="en.html">EN</a>
+    </div>
+  </div>
 </nav>
 
 <!-- Hero -->
@@ -355,8 +410,41 @@
   </div>
 </section>
 
+<!-- Articles -->
+<section class="tools">
+  <h2 class="section-title">副业指南文章</h2>
+  <p class="section-desc">实用的副业入门教程和经验分享</p>
+  <div class="cards">
+
+    <a href="articles/side-hustle-guide.html" class="card">
+      <div class="card-icon">📚</div>
+      <div class="card-title">副业入门完全指南</div>
+      <div class="card-desc">从零开始打造第二收入，适合完全没有副业经验的新手</div>
+      <span class="card-link">阅读全文</span>
+    </a>
+
+    <a href="articles/self-media.html" class="card">
+      <div class="card-icon">📱</div>
+      <div class="card-title">自媒体副业入门</div>
+      <div class="card-desc">如何从零开始做自媒体赚钱，主流平台和变现方式详解</div>
+      <span class="card-link">阅读全文</span>
+    </a>
+
+    <a href="articles/make-money-online.html" class="card">
+      <div class="card-icon">💰</div>
+      <div class="card-title">网上赚钱的10种方式</div>
+      <div class="card-desc">盘点2025年最可行的网上赚钱方式，附详细入门步骤</div>
+      <span class="card-link">阅读全文</span>
+    </a>
+
+  </div>
+  <p style="text-align: center; margin-top: 2rem; opacity: 0; transform: translateY(20px); transition: all .6s .3s ease-out;" class="section-desc visible">
+    <a href="blog.html" style="color: var(--accent2); text-decoration: none; font-weight: 600; font-size: 1rem;">查看全部文章 →</a>
+  </p>
+</section>
+
 <footer>
-  &copy; 2025 我了个去 &middot; 副业指南
+  &copy; 2025 我了个去 &middot; <a href="privacy.html">隐私政策</a> &middot; <a href="terms.html">服务条款</a>
 </footer>
 
 <script>
