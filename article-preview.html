@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>重操旧业，开始搞垃圾站</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    line-height: 1.8;
+  }
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    background: #fff;
+    min-height: 100vh;
+    padding: 30px 24px 60px;
+  }
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111;
+    text-align: center;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .subtitle {
+    text-align: center;
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+  }
+  .subtitle span { margin: 0 8px; }
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111;
+    margin: 36px 0 16px;
+    padding-left: 12px;
+    border-left: 4px solid #07c160;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #222;
+    margin: 24px 0 12px;
+  }
+  p {
+    font-size: 15px;
+    color: #3f3f3f;
+    margin-bottom: 16px;
+    text-align: justify;
+  }
+  .highlight-box {
+    background: linear-gradient(135deg, #f0faf4 0%, #e8f5ee 100%);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #d4edda;
+  }
+  .highlight-box p { margin-bottom: 8px; color: #2d6a4f; }
+  .highlight-box p:last-child { margin-bottom: 0; }
+  .site-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 0;
+    border: 1px solid #e9ecef;
+  }
+  .site-card .url {
+    display: inline-block;
+    background: #07c160;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    text-decoration: none;
+    margin-bottom: 8px;
+  }
+  .site-card .url:hover { opacity: 0.9; }
+  .site-card p { font-size: 14px; margin-bottom: 4px; }
+  .step-num {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    background: #07c160;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-size: 14px;
+    font-weight: 700;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  code {
+    background: #f1f3f5;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: "SF Mono", "Fira Code", Menlo, monospace;
+    font-size: 13px;
+    color: #e83e8c;
+  }
+  pre {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 12px 0 20px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    font-size: 13px;
+  }
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0 20px;
+  }
+  .tag {
+    background: #f0f0f0;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #555;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 20px;
+    font-size: 14px;
+  }
+  th {
+    background: #f8f9fa;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #dee2e6;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+    color: #555;
+  }
+  .tip-box {
+    background: #fff8e1;
+    border-left: 4px solid #ff9800;
+    padding: 14px 16px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .tip-box p { color: #795548; font-size: 14px; margin-bottom: 0; }
+  .promo-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 24px 20px;
+    margin: 24px 0;
+    color: #fff;
+  }
+  .promo-section h3 {
+    color: #fff;
+    margin-top: 0;
+    font-size: 20px;
+    text-align: center;
+  }
+  .promo-section p { color: rgba(255,255,255,0.9); }
+  .promo-section .niches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    margin: 12px 0 16px;
+  }
+  .promo-section .niche-tag {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 10px;
+    border-radius: 14px;
+    font-size: 12px;
+    color: #fff;
+  }
+  .promo-section .cta {
+    display: block;
+    text-align: center;
+    background: #fff;
+    color: #667eea;
+    padding: 10px 24px;
+    border-radius: 24px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    margin-top: 16px;
+  }
+  .promo-section .cta:hover { opacity: 0.9; }
+  ul {
+    padding-left: 20px;
+    margin: 12px 0 16px;
+  }
+  li {
+    font-size: 15px;
+    color: #3f3f3f;
+    margin-bottom: 8px;
+  }
+  .divider {
+    border: none;
+    border-top: 1px dashed #ddd;
+    margin: 30px 0;
+  }
+  .footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+  }
+  .footer p { color: #999; text-align: center; font-size: 13px; }
+  .bold { font-weight: 700; color: #111; }
+  .green { color: #07c160; font-weight: 600; }
+  blockquote {
+    border-left: 3px solid #ddd;
+    padding: 8px 16px;
+    margin: 16px 0;
+    color: #666;
+    font-style: italic;
+    background: #fafafa;
+    border-radius: 0 4px 4px 0;
+  }
+  blockquote p { color: #666; }
+  .emoji-title { font-size: 20px; }
+  .cost-highlight {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 900;
+    color: #07c160;
+    margin: 16px 0;
+  }
+  .cost-highlight small {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    font-weight: 400;
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>重操旧业，开始搞垃圾站</h1>
+<p class="subtitle">
+<span>2026-06-17</span>|<span>互联网老兵</span>|<span>副业实战</span>
+</p>
+
+<p>当年混互联网的老朋友们，看到这个标题应该会心一笑。</p>
+
+<p>是的，我又开始搞站了。</p>
+
+<p>不瞒各位，上一次认真做网站还是在 WordPress 时代，那时候 SEO 三件套：标题堆关键词、文章伪原创、外链群发，一套组合拳打下来，Google AdSense 美刀到账，日子过得那叫一个滋润。</p>
+
+<p>后来嘛，大家都去搞短视频了，我也跟着去折腾小红书、抖音，网站这事儿就搁置了。</p>
+
+<p>直到最近，我突然想明白一件事——</p>
+
+<p class="bold" style="text-align:center;font-size:17px;margin:20px 0;">短视频是流量，网站才是资产。</p>
+
+<p>短视频平台的流量是借来的，平台说不给你就不给你了。但一个有内容、有流量、有广告收入的网站，那是实实在在的数字资产，睡觉的时候都在帮你赚钱。</p>
+
+<p>所以，重操旧业，开搞。</p>
+
+<hr class="divider">
+
+<h2>我搞了什么站？</h2>
+
+<p>先说主站：<span class="bold">wolegequ.top</span>（我了个去）</p>
+
+<p>名字就很随意对不对？没错，垃圾站的第一要义就是——<span class="bold">别在名字上浪费时间</span>。</p>
+
+<p>主站定位是"副业指南"，说白了就是各种搞钱方法的聚合页。暗色主题，粒子动效，看着还挺像那么回事的。</p>
+
+<p>然后是子站矩阵：</p>
+
+<div class="site-card">
+  <a class="url" href="https://qihao.wolegequ.top" target="_blank">qihao.wolegequ.top</a>
+  <p><strong>起号指南</strong> — 16个赛道的起号策略和运营方法</p>
+</div>
+
+<div class="site-card">
+  <a class="url" href="https://download.wolegequ.top" target="_blank">download.wolegequ.top</a>
+  <p><strong>素材下载工具</strong> — YouTube/Twitter 视频下载</p>
+</div>
+
+<p>为什么要搞子站矩阵？因为 AdSense 审核的时候，一个站容易被拒，但如果你有一堆互相链接的站，形成一个"生态"，Google 就会觉得你是个正经站长。</p>
+
+<blockquote><p>（以上纯属个人玄学，没有科学依据）</p></blockquote>
+
+<hr class="divider">
+
+<h2>全流程复盘</h2>
+
+<p>下面把整个流程走一遍，给同样想搞站的朋友参考。</p>
+
+<h3><span class="step-num">1</span>写代码，建网站</h3>
+
+<p>这次没有用 WordPress，直接上的 <span class="bold">Astro + Tailwind CSS</span>。</p>
+
+<p>为什么？</p>
+
+<ul>
+  <li>静态站速度快，Google 喜欢</li>
+  <li>不需要服务器，省 hosting 钱</li>
+  <li>全部代码在本地，Git 管理，心里踏实</li>
+</ul>
+
+<p>主站更简单，纯 HTML + CSS + JS，连构建工具都没用。为什么？因为——<span class="bold">垃圾站就要有垃圾站的样子</span>，越简单越好维护。</p>
+
+<p>16个赛道的起号指南内容，每个赛道都是三四千字的深度长文，包含：</p>
+
+<ul>
+  <li>赛道深度分析</li>
+  <li>账号搭建指南</li>
+  <li>内容策略和选题方向</li>
+  <li>涨粉技巧</li>
+  <li>变现路径</li>
+  <li>30天冷启动计划</li>
+  <li>常见误区和避坑指南</li>
+</ul>
+
+<p>内容才是王道，SEO 的尽头是好内容。（虽然我自己也不太信这句话）</p>
+
+<h3><span class="step-num">2</span>申请 Google AdSense</h3>
+
+<p>这一步是玄学中的玄学。</p>
+
+<p>第一次申请，被拒了。理由是"内容不足"。</p>
+
+<p>于是我疯狂加内容：隐私政策、关于我们、联系方式、使用条款、博客文章……能加的全加上。中英文双版本，五种语言切换，47个页面打底。</p>
+
+<p>第二次申请，过了。</p>
+
+<div class="highlight-box">
+  <p><strong>AdSense 过审经验总结：</strong></p>
+  <p>1. <strong>页面数量</strong>：至少 15-20 个有实质内容的页面</p>
+  <p>2. <strong>必要页面</strong>：隐私政策、关于、联系、使用条款，一个都不能少</p>
+  <p>3. <strong>原创内容</strong>：别抄，Google 不傻</p>
+  <p>4. <strong>导航清晰</strong>：让用户（和 Google 爬虫）能轻松找到所有页面</p>
+  <p>5. <strong>多语言</strong>：有条件就上，显得专业</p>
+</div>
+
+<h3><span class="step-num">3</span>域名解析迁移</h3>
+
+<p>这是整个流程中最刺激的一步。</p>
+
+<p>我的域名 <code>wolegequ.top</code> 原来在阿里云注册，DNS 也在阿里云。为了用 Cloudflare Pages 部署，需要把域名的 nameserver 迁移到 Cloudflare。</p>
+
+<p><strong>操作步骤：</strong></p>
+
+<p>① 在 Cloudflare 后台添加域名，它会给你两个 nameserver 地址：</p>
+
+<pre><code>ricardo.ns.cloudflare.com
+sandy.ns.cloudflare.com</code></pre>
+
+<p>② 去阿里云的<strong>域名注册控制台</strong>（注意不是 DNS 解析控制台！这是两个不同的地方！）</p>
+<ul>
+  <li>路径：域名注册 → 域名详情 → DNS 管理 → DNS修改</li>
+  <li>点击"修改DNS服务器"</li>
+  <li>输入 Cloudflare 给的两个 nameserver</li>
+  <li>需要短信验证（阿里云绑定的手机号）</li>
+</ul>
+
+<p>③ 等待 DNS 传播，一般 24-48 小时</p>
+
+<div class="tip-box">
+  <p><strong>踩坑记录：</strong>阿里云的"解析设置"和"域名注册"是两个完全不同的控制台。nameserver 的修改必须在"域名注册"里操作，不是在"解析设置"里加 CNAME 记录就完事了。我在这一步卡了好久。</p>
+</div>
+
+<h3><span class="step-num">4</span>发布到 GitHub</h3>
+
+<p>代码版本管理用 GitHub，这个没什么好说的。</p>
+
+<pre><code>git init
+git add .
+git commit -m "initial commit"
+git remote add origin https://github.com/modayishujia/wolegequ.top.git
+git push -u origin main</code></pre>
+
+<p>子站也各有各的仓库：</p>
+<ul>
+  <li><code>modayishujia/wolegequ.top</code></li>
+  <li><code>modayishujia/qihao.wolegequ.top</code></li>
+  <li><code>modayishujia/download.wolegequ.top</code></li>
+</ul>
+
+<p>GitHub 不仅是代码仓库，更是 Cloudflare Pages 自动部署的触发器——每次 push 到 main 分支，Cloudflare 就会自动拉取代码、构建、部署。</p>
+
+<h3><span class="step-num">5</span>Cloudflare Pages 部署</h3>
+
+<p>这一步是最爽的，因为——<span class="green">免费</span>。</p>
+
+<p>Cloudflare Pages 的免费套餐：</p>
+
+<ul>
+  <li>无限站点</li>
+  <li>无限请求</li>
+  <li>无限带宽</li>
+  <li>每月 500 次构建</li>
+  <li>100 个自定义域名</li>
+</ul>
+
+<p>对比一下 Vercel 和 Netlify 的免费套餐，Cloudflare 简直是慈善家。</p>
+
+<p><strong>部署步骤：</strong></p>
+
+<ul>
+  <li>登录 Cloudflare Dashboard</li>
+  <li>Pages → Create a project → Connect to Git</li>
+  <li>选择 GitHub 仓库</li>
+  <li>配置构建设置：
+    <br>• <strong>主站</strong>（纯 HTML）：构建命令留空，输出目录 <code>/</code>
+    <br>• <strong>起号指南</strong>（Astro）：构建命令 <code>npm run build</code>，输出目录 <code>dist</code>
+  </li>
+  <li>点部署，等一分钟，完成</li>
+</ul>
+
+<p>部署完会得到一个 <code>xxx.pages.dev</code> 的默认域名，然后在 Custom Domains 里绑定自己的域名。</p>
+
+<p>因为域名已经在 Cloudflare 了，添加自定义域名的时候会<strong>自动创建 CNAME 记录</strong>，秒生效，不用手动配置 DNS。</p>
+
+<div class="highlight-box">
+  <p><strong>最终效果：</strong></p>
+  <p>🌐 <code>wolegequ.top</code> → 主站</p>
+  <p>📋 <code>qihao.wolegequ.top</code> → 起号指南</p>
+  <p>⬇️ <code>download.wolegequ.top</code> → 素材下载</p>
+  <p style="margin-top:8px;">三个站，零服务器费用，全球 CDN 加速，自动 HTTPS。</p>
+</div>
+
+<hr class="divider">
+
+<h2>重点推广</h2>
+
+<div class="promo-section">
+  <h3>🔗 qihao.wolegequ.top — 起号指南</h3>
+  <p style="text-align:center;">这是一个<strong>全赛道起号策略网站</strong>，目前覆盖 16 个热门赛道：</p>
+  <div class="niches">
+    <span class="niche-tag">📱 数码</span>
+    <span class="niche-tag">🖥️ 科技</span>
+    <span class="niche-tag">🤖 AI</span>
+    <span class="niche-tag">📷 摄影</span>
+    <span class="niche-tag">🎨 设计</span>
+    <span class="niche-tag">💄 美妆</span>
+    <span class="niche-tag">🏠 家居</span>
+    <span class="niche-tag">🍳 美食</span>
+    <span class="niche-tag">👗 穿搭</span>
+    <span class="niche-tag">💪 健身</span>
+    <span class="niche-tag">📚 知识付费</span>
+    <span class="niche-tag">💰 理财</span>
+    <span class="niche-tag">🎮 游戏</span>
+    <span class="niche-tag">✈️ 旅行</span>
+    <span class="niche-tag">👶 母婴</span>
+    <span class="niche-tag">🐱 宠物</span>
+  </div>
+  <p>每个赛道都是一篇 3000-5000 字的<strong>深度起号指南</strong>，包含赛道分析、账号搭建、内容策略、涨粉技巧、变现路径、30天行动计划。</p>
+  <p>每个赛道还内置 <strong>AI Prompt 生成器</strong>——输入一句话描述，生成一套完整的爆款内容 prompt，一键复制，直接用。</p>
+  <p>支持 <strong>6 种语言</strong>：中文、English、日本語、Deutsch、Português、Français</p>
+  <a class="cta" href="https://qihao.wolegequ.top" target="_blank">👉 立即访问 qihao.wolegequ.top</a>
+</div>
+
+<hr class="divider">
+
+<h2>工具链总结</h2>
+
+<p>给想复刻这套流程的朋友，完整工具链如下：</p>
+
+<table>
+  <thead>
+    <tr><th>环节</th><th>工具</th><th>费用</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>代码编辑</td><td>VS Code + AI 辅助</td><td>免费</td></tr>
+    <tr><td>版本管理</td><td>GitHub</td><td>免费</td></tr>
+    <tr><td>静态站框架</td><td>Astro + Tailwind CSS</td><td>免费</td></tr>
+    <tr><td>部署平台</td><td>Cloudflare Pages</td><td>免费</td></tr>
+    <tr><td>CDN + DNS</td><td>Cloudflare</td><td>免费</td></tr>
+    <tr><td>HTTPS 证书</td><td>Cloudflare 自动</td><td>免费</td></tr>
+    <tr><td>域名</td><td>阿里云 .top 域名</td><td>~10 元/年</td></tr>
+    <tr><td>广告变现</td><td>Google AdSense</td><td>免费申请</td></tr>
+  </tbody>
+</table>
+
+<div class="cost-highlight">
+  总成本：10 块
+  <small>用 10 块钱启动一个全球 CDN 加速、自动 HTTPS、自动部署的网站矩阵</small>
+</div>
+
+<hr class="divider">
+
+<h2>最后</h2>
+
+<p>有人说搞垃圾站丢人。</p>
+
+<p>我觉得不丢人。</p>
+
+<p>丢人的是天天喊着要做大事，结果什么都没做出来。</p>
+
+<p class="bold" style="text-align:center;font-size:16px;margin:24px 0;">先做出来，先跑起来，先赚到第一块钱。<br>然后再说优化的事。</p>
+
+<p>如果你也想搞一个自己的网站，或者想学习怎么起号做自媒体，欢迎访问 <a href="https://qihao.wolegequ.top" target="_blank" style="color:#07c160;font-weight:600;">qihao.wolegequ.top</a>，16 个赛道的起号指南全部免费阅读。</p>
+
+<p>有问题可以留言，老站长在线答疑。</p>
+
+<div class="footer">
+  <p>本文由 wolegequ.top 站长撰写</p>
+  <p>一个正在重操旧业的互联网老兵</p>
+  <p style="margin-top:8px;">📧 contact@wolegequ.top</p>
+</div>
+
+</div>
+</body>
+</html>
